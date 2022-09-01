@@ -1,0 +1,61 @@
+@use '../abstracts/variables' as *;
+
+.delete-modal {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -135%);
+    width: 280px;
+    border-radius: 7px;
+    background-color: $navy-dark;
+    padding: 2rem;
+    z-index: 1000;
+
+    h1 {
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+
+    p {
+        color: $purple-muted-light;
+        font-size: 0.7rem;
+        line-height: 16px;
+        margin: 0.8rem 0;
+    }
+
+    div {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            border: none;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            padding: 0.8rem 1.1rem;
+            cursor: pointer;
+        }
+    }
+
+    &__cancel {
+        background-color: $navy-medium;
+        color: $purple-muted-light;
+
+        &:hover {
+            background-color: #fff;
+            color: $purple-dark;
+        }
+    }
+
+    &__delete {
+        background-color: $red-dark;
+        color: #fff;
+        margin-left: 0.4rem;
+
+        &:hover {
+            background-color: $red-light;
+        }
+    }
+}

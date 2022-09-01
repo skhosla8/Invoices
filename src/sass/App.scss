@@ -1,0 +1,39 @@
+@use './abstracts/variables' as *;
+@use './components/sidebar';
+@use './components/main';
+@use './components/statusdropdown';
+@use './components/newinvoice';
+@use './components/viewinvoice';
+@use './components/deletemodal';
+@use './components//editinvoice';
+
+.app {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: $charcoal-light;
+    font-family: $font-family;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hide {
+    display: none;
+}
+
+.display {
+    display: flex;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+}
