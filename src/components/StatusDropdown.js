@@ -8,25 +8,38 @@ function StatusDropdown() {
 
     const dispatch = useDispatch();
 
-    const filterByStatus = (status, prevElem, nextElem) => {
-        let input = document.getElementById(status);
-        let prevInput = document.getElementById(prevElem);
-        let nextInput = document.getElementById(nextElem);
+    const filterByStatus = (currStatus, prevStatus, nextStatus) => {
+        let currInput = document.getElementById(currStatus);
+        let prevInput = document.getElementById(prevStatus);
+        let nextInput = document.getElementById(nextStatus);
 
+        let filtered;
 
-        if (input.checked) {
-            let filtered = invoices.filter(invoice => invoice.status === status);
-
-            prevInput.disabled = true;
-            nextInput.disabled = true;
+        if (currInput.checked && prevInput.checked && nextInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status === currStatus || invoice.status === prevStatus || invoice.status === nextStatus);
+            dispatch(filterInvoices({ filtered }));
+        } else if (prevInput.checked && nextInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status !== currStatus);
+            dispatch(filterInvoices({ filtered }));
+        } else if (currInput.checked && prevInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status === currStatus || invoice.status === prevStatus);
+            dispatch(filterInvoices({ filtered }));
+        } else if (currInput.checked && nextInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status === currStatus || invoice.status === nextStatus);
+            dispatch(filterInvoices({ filtered }));
+        } else if (prevInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status === prevStatus);
+            dispatch(filterInvoices({ filtered }));
+        } else if (nextInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status === nextStatus);
+            dispatch(filterInvoices({ filtered }));
+        } else if (currInput.checked) {
+            filtered = invoicesCopy.filter(invoice => invoice.status === currStatus);
             dispatch(filterInvoices({ filtered }));
         } else {
-            let filtered = invoicesCopy;
-
-            prevInput.disabled = false;
-            nextInput.disabled = false;
+            filtered = invoicesCopy;
             dispatch(filterInvoices({ filtered }));
-        };
+        }
     };
 
     useEffect(() => {
@@ -37,17 +50,17 @@ function StatusDropdown() {
     return (
         <div id="dropdown-status" className="status-dropdown">
             <div className="status-dropdown__container">
-                <input id="draft" className="status-dropdown__container__checkbox" type="checkbox" value="draft" onChange={() => filterByStatus('draft', 'paid', 'pending')} />
+                <input id="draft" className="status-dropdown__container__checkbox" type="checkbox" value="draft" onClick={() => filterByStatus('draft', 'paid', 'pending')} />
                 <label htmlFor="draft">Draft</label>
             </div>
 
             <div className="status-dropdown__container">
-                <input id="pending" className="status-dropdown__container__checkbox" type="checkbox" value="pending" onChange={() => filterByStatus('pending', 'draft', 'paid')} />
+                <input id="pending" className="status-dropdown__container__checkbox" type="checkbox" value="pending" onClick={() => filterByStatus('pending', 'draft', 'paid')} />
                 <label htmlFor="pending">Pending</label>
             </div>
 
             <div className="status-dropdown__container">
-                <input id="paid" className="status-dropdown__container__checkbox" type="checkbox" value="paid" onChange={() => filterByStatus('paid', 'pending', 'draft')} />
+                <input id="paid" className="status-dropdown__container__checkbox" type="checkbox" value="paid" onClick={() => filterByStatus('paid', 'pending', 'draft')} />
                 <label htmlFor="paid">Paid</label>
             </div>
         </div>
