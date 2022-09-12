@@ -9,6 +9,7 @@ import NewInvoice from './NewInvoice';
 
 function Main({ setInvoiceId }) {
     const [showDropdown, setShowDropdown] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const invoices = useSelector(state => state.invoices.allInvoices);
     const mainComponent = useRef(null);
@@ -74,11 +75,12 @@ function Main({ setInvoiceId }) {
     };
 
     const openNewInvoice = () => {
-        let modal = document.getElementById('new-invoice-modal');
-        let modalOverlay = document.getElementById('new-invoice-overlay');
+        // let modal = document.getElementById('new-invoice-modal');
+        //let modalOverlay = document.getElementById('new-invoice-overlay');
 
-        modal.classList.add('visible');
-        modalOverlay.classList.add('overlay');
+        //modal.classList.add('visible');
+        //modalOverlay.classList.add('overlay');
+        setIsOpen(true);
     };
 
     useEffect(() => {
@@ -115,7 +117,11 @@ function Main({ setInvoiceId }) {
                 {renderedInvoices}
             </div>
 
-            <NewInvoice />
+            {isOpen &&
+                <NewInvoice
+                    setIsOpen={setIsOpen}
+                />
+            }
         </div>
     )
 }

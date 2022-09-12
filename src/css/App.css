@@ -272,7 +272,6 @@
 }
 
 .new-invoice {
-  visibility: hidden;
   width: 350px;
   height: 100vh;
   position: absolute;
@@ -294,10 +293,10 @@
   font-weight: 400;
 }
 .new-invoice h2:nth-of-type(1) {
-  margin-top: 2.2rem;
+  margin: 2.2rem 0 0.1rem 0;
 }
 .new-invoice h2:nth-of-type(2) {
-  margin-top: 2.1rem;
+  margin: 2.1rem 0 0.1rem 0;
 }
 .new-invoice h2:nth-of-type(3) {
   font-size: 1rem;
@@ -309,23 +308,7 @@
   color: #DFE3FA;
   font-size: 0.7rem;
   font-weight: 400;
-  margin: 1.2rem 0 0.4rem 0;
-}
-.new-invoice input {
-  background-color: #1E2139;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 0.6rem 0 0.6rem 0.8rem;
-  color: #fff;
-  font-size: 0.7rem;
-}
-.new-invoice input::placeholder {
-  color: white;
-  font-size: 0.6rem;
-}
-.new-invoice input:focus {
-  border: 1px solid #7C5DFA;
+  margin: 1.5rem 0 0.3rem 0;
 }
 .new-invoice button {
   outline: none;
@@ -333,10 +316,6 @@
   font-size: 0.6rem;
   border-radius: 20px;
   cursor: pointer;
-}
-.new-invoice__field {
-  display: flex;
-  flex-direction: column;
 }
 .new-invoice__location {
   display: flex;
@@ -362,7 +341,7 @@
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.7rem;
 }
-.new-invoice__date-terms div select {
+.new-invoice__date-terms div #terms {
   width: 150px;
   padding: 0.7rem 0 0.7rem 0.4rem;
   border: none;
@@ -372,7 +351,7 @@
   color: #fff;
   font-size: 0.65rem;
 }
-.new-invoice__date-terms div select:focus {
+.new-invoice__date-terms div #terms:focus {
   border: 1px solid #7C5DFA;
 }
 .new-invoice__date-terms #invoice-date-label {
@@ -452,6 +431,10 @@
   margin-left: 0.3rem;
   background-color: #141625;
   color: #DFE3FA;
+  outline: none;
+  border: none;
+  padding: 0.6rem 0 0.6rem 0.8rem;
+  font-size: 0.7rem;
 }
 .new-invoice .trash-icon {
   width: 10px;
@@ -467,6 +450,37 @@
 }
 .new-invoice__errors p:nth-of-type(2) {
   margin-top: 0.5rem;
+}
+.new-invoice__field {
+  display: flex;
+  flex-direction: column;
+}
+.new-invoice__field__container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.new-invoice__field__container div {
+  font-size: 0.7rem;
+  margin-top: 0.4rem;
+  margin-bottom: -0.5rem;
+  color: #EC5757;
+}
+.new-invoice__field__input {
+  background-color: #1E2139;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.6rem 0 0.6rem 0.8rem;
+  color: #fff;
+  font-size: 0.7rem;
+}
+.new-invoice__field__input::placeholder {
+  color: white;
+  font-size: 0.6rem;
+}
+.new-invoice__field__input:focus {
+  border: 1px solid #7C5DFA;
 }
 
 .view-invoice {
@@ -1003,4 +1017,8 @@
   bottom: 0;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.error {
+  border: 1px solid #EC5757;
 }
