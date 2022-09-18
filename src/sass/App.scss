@@ -6,6 +6,7 @@
 @use './components/viewinvoice';
 @use './components/deletemodal';
 @use './components//editinvoice';
+@use './components/invoicemodal';
 
 .app {
     display: flex;

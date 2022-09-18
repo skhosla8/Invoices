@@ -4,10 +4,11 @@ import { formatStatus, formatDate, navigateToHomepage } from '../utilities';
 import arrowLeftIcon from '../assets/icon-arrow-left.svg';
 import { updateInvoiceStatus } from '../redux/reducers/invoicesSlice';
 import DeleteModal from './DeleteModal';
-import EditInvoice from './EditInvoice';
+import InvoiceModal from './InvoiceModal';
 
 function ViewInvoice({ invoiceId, setInvoiceId }) {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isOpenEditInvoice, setIsOpenEditInvoice] = useState(false);
+
     const viewInvoiceComponent = useRef(null);
     const statusContainer = useRef(null);
 
@@ -57,7 +58,7 @@ function ViewInvoice({ invoiceId, setInvoiceId }) {
     };
 
     const openEditInvoice = () => {
-        setIsVisible(true);
+        setIsOpenEditInvoice(true);
     };
 
     useEffect(() => {
@@ -169,11 +170,13 @@ function ViewInvoice({ invoiceId, setInvoiceId }) {
             <DeleteModal
                 invoiceId={invoiceId}
             />
-            {isVisible &&
-                <EditInvoice
+            {isOpenEditInvoice &&
+                <InvoiceModal
                     currentInvoice={currentInvoice}
+                    invoiceId={invoiceId}
                     setInvoiceId={setInvoiceId}
-                    setIsVisible={setIsVisible}
+                    isOpenEditInvoice={isOpenEditInvoice}
+                    setIsOpenEditInvoice={setIsOpenEditInvoice}
                 />
             }
         </div>

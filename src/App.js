@@ -11,6 +11,7 @@ function App() {
     <div className="app">
       <Sidebar />
       <Main
+        invoiceId={invoiceId}
         setInvoiceId={setInvoiceId}
       />
       <ViewInvoice

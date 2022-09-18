@@ -5,13 +5,14 @@ import arrowDownIcon from '../assets/icon-arrow-down.svg';
 import plusIcon from '../assets/icon-plus.svg';
 import arrowRightIcon from '../assets/icon-arrow-right.svg';
 import StatusDropdown from './StatusDropdown';
-import NewInvoice from './NewInvoice';
+import InvoiceModal from './InvoiceModal';
 
-function Main({ setInvoiceId }) {
+function Main({ invoiceId, setInvoiceId }) {
     const [showDropdown, setShowDropdown] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenNewInvoice, setIsOpenNewInvoice] = useState(false);
 
     const invoices = useSelector(state => state.invoices.allInvoices);
+
     const mainComponent = useRef(null);
 
     const numInvoices = invoices && invoices.length;
@@ -75,12 +76,7 @@ function Main({ setInvoiceId }) {
     };
 
     const openNewInvoice = () => {
-        // let modal = document.getElementById('new-invoice-modal');
-        //let modalOverlay = document.getElementById('new-invoice-overlay');
-
-        //modal.classList.add('visible');
-        //modalOverlay.classList.add('overlay');
-        setIsOpen(true);
+        setIsOpenNewInvoice(true);
     };
 
     useEffect(() => {
@@ -117,9 +113,11 @@ function Main({ setInvoiceId }) {
                 {renderedInvoices}
             </div>
 
-            {isOpen &&
-                <NewInvoice
-                    setIsOpen={setIsOpen}
+            {isOpenNewInvoice &&
+                <InvoiceModal
+                    invoiceId={invoiceId}
+                    isOpenNewInvoice={isOpenNewInvoice}
+                    setIsOpenNewInvoice={setIsOpenNewInvoice}
                 />
             }
         </div>
